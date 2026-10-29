@@ -181,12 +181,12 @@ async function procesarBuscarArtista() {
             tablaSalida += "<thead><tr><th>ID</th><th>NOMBRE</th><th>GENERO</th><th>NACIONALIDAD</th><th>ALBUM</th><th>PREMIO</th><th>BIOGRAFIA</th></tr></thead>";
             tablaSalida += "<tbody><tr>";
             tablaSalida += "<td>" + artista.artist_id + "</td>"
-            tablaSalida += "<td>" + artista.artist_name + "</td>"
-            tablaSalida += "<td>" + artista.genre + "</td>"
-            tablaSalida += "<td>" + artista.nationality + "</td>"
-            tablaSalida += "<td>" + artista.album + "</td>"
-            tablaSalida += "<td>" + artista.award + "</td>"
-            tablaSalida += "<td>" + artista.biography + "</td>"
+            tablaSalida += "<td>" + escapeHtml(artista.artist_name) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(artista.genre) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(artista.nationality) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(artista.album) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(artista.award) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(artista.biography) + "</td>"
             tablaSalida += "<td><button class='btn btn-danger' id='btnBorrarArtista' data-idartista='" + artista.artist_id + "'><i class='bi bi-trash'></i></button></td>";
             tablaSalida += "<td><button class='btn btn-primary' id='btnEditarArtista' data-artista='" + JSON.stringify(artista) + "'><i class='bi bi-pencil-square'></i></button></td>";
             tablaSalida += "</tr></tbody></table>";
@@ -232,7 +232,7 @@ function procesarBotonEditarArtista(oEvento) {
         } else {
             boton = oEvento.target;
         }
-        
+
         let dataArtista = boton.dataset.artista;
 
         ocultarFormularios();
@@ -337,12 +337,12 @@ async function procesarListadoCancionesArtista() {
 
         for (let cancion of respuesta.datos) {
             tablaSalida += "<tr><td>" + cancion.song_id + "</td>"
-            tablaSalida += "<td>" + cancion.song_title + "</td>"
-            tablaSalida += "<td>" + cancion.duration + "</td>"
-            tablaSalida += "<td>" + cancion.release_year + "</td>"
-            tablaSalida += "<td>" + cancion.album + "</td>"
-            tablaSalida += "<td>" + cancion.lyric + "</td>"
-            tablaSalida += "<td>" + cancion.videoUrl + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.song_title) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.duration) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.release_year) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.album) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.lyric) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.videoUrl) + "</td>"
             tablaSalida += "<td>" + cancion.artist_id + "</td>"
             tablaSalida += "<td><button class='btn btn-danger' id='btnBorrarCancion' data-idcancion='" + cancion.song_id + "'><i class='bi bi-trash'></i></button></td>";
             tablaSalida += "<td><button class='btn btn-primary' id='btnEditarCancion'  data-cancion='" + JSON.stringify(cancion) + "'><i class='bi bi-pencil-square'></i></button></td></tr>";
@@ -423,12 +423,12 @@ async function procesarBuscarCancion() {
             tablaSalida += "<thead><tr><th>ID CANCION</th><th>NOMBRE</th><th>DURACION</th><th>AÑO DE LANZAMIENTO</th><th>ALBUM</th><th>LETRA</th><th>VIDEO URL</th><th>ID ARTISTA</th></tr></thead>";
             tablaSalida += "<tbody><tr>";
             tablaSalida += "<td>" + cancion.song_id + "</td>"
-            tablaSalida += "<td>" + cancion.song_title + "</td>"
-            tablaSalida += "<td>" + cancion.duration + "</td>"
-            tablaSalida += "<td>" + cancion.release_year + "</td>"
-            tablaSalida += "<td>" + cancion.album + "</td>"
-            tablaSalida += "<td>" + cancion.lyric + "</td>"
-            tablaSalida += "<td>" + cancion.videoUrl + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.song_title) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.duration) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.release_year) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.album) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.lyric) + "</td>"
+            tablaSalida += "<td>" + escapeHtml(cancion.videoUrl) + "</td>"
             tablaSalida += "<td>" + cancion.artist_id + "</td>"
             tablaSalida += "<td><button class='btn btn-danger' id='btnBorrarCancion' data-idcancion='" + cancion.song_id + "'><i class='bi bi-trash'></i></button></td>";
             tablaSalida += "<td><button class='btn btn-primary' id='btnEditarCancion' data-cancion='" + JSON.stringify(cancion) + "'><i class='bi bi-pencil-square'></i></button></td>";

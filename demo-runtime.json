@@ -1,0 +1,9 @@
+{
+  "kind": "radio",
+  "name": "RadioVersos",
+  "sql": [
+    "database/demo.sql"
+  ],
+  "url": "http://127.0.0.1:8084/app/",
+  "check": "http://127.0.0.1:8084/app/backend/phpArtista/listado_artistas.php"
+}

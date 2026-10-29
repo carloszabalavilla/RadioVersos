@@ -1,3 +1,7 @@
+function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
 class Artista {
     constructor(id, nombre, genero, nacionalidad, album, premio, biografia) {
         this.id = id;
@@ -62,12 +66,12 @@ class Artista {
 
             for (let artista of respuesta.datos) {
                 listado += "<tr><td>" + artista.artist_id + "</td>"
-                listado += "<td>" + artista.artist_name + "</td>"
-                listado += "<td>" + artista.genre + "</td>"
-                listado += "<td>" + artista.nationality + "</td>"
-                listado += "<td>" + artista.album + "</td>"
-                listado += "<td>" + artista.award + "</td>"
-                listado += "<td>" + artista.biography + "</td></tr>"
+                listado += "<td>" + escapeHtml(artista.artist_name) + "</td>"
+                listado += "<td>" + escapeHtml(artista.genre) + "</td>"
+                listado += "<td>" + escapeHtml(artista.nationality) + "</td>"
+                listado += "<td>" + escapeHtml(artista.album) + "</td>"
+                listado += "<td>" + escapeHtml(artista.award) + "</td>"
+                listado += "<td>" + escapeHtml(artista.biography) + "</td></tr>"
             }
             listado += "</tbody></table>";
         }
@@ -150,12 +154,12 @@ class Cancion {
 
             for (let cancion of respuesta.datos) {
                 listado += "</tr><td>" + cancion.song_id + "</td>"
-                listado += "<td>" + cancion.song_title + "</td>"
-                listado += "<td>" + cancion.duration + "</td>"
-                listado += "<td>" + cancion.release_year + "</td>"
-                listado += "<td>" + cancion.album + "</td>"
-                listado += "<td>" + cancion.lyric + "</td>"
-                listado += "<td>" + cancion.videoUrl + "</td>"
+                listado += "<td>" + escapeHtml(cancion.song_title) + "</td>"
+                listado += "<td>" + escapeHtml(cancion.duration) + "</td>"
+                listado += "<td>" + escapeHtml(cancion.release_year) + "</td>"
+                listado += "<td>" + escapeHtml(cancion.album) + "</td>"
+                listado += "<td>" + escapeHtml(cancion.lyric) + "</td>"
+                listado += "<td>" + escapeHtml(cancion.videoUrl) + "</td>"
                 listado += "<td>" + cancion.artist_id + "</td></tr>"
             }
             listado += "</tbody></table>";
