@@ -40,10 +40,7 @@ function registrarEventos() {
     frmBuscarCancion.btnBuscarCancion.addEventListener("click", procesarBuscarCancion);
     frmListadoArtistaCanciones.btnListadoArtistaCanciones.addEventListener("click", procesarListadoCancionesArtista);
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var modalPresentacion = new bootstrap.Modal(document.querySelector("#modalPresentacion"));
-        modalPresentacion.show();
-    });
+
 }
 //Mostrar inicio
 function mostrarInicio() {

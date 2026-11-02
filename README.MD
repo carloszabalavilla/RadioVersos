@@ -22,3 +22,6 @@ Las consultas están parametrizadas y aceptan apóstrofes en nombres y letras. E
 La aplicación original no incluye autenticación. Esta distribución está preparada para uso local; no se debe publicar como servicio abierto.
 
 Prueba HTTP reproducible después del arranque: `node scripts/smoke.cjs` (Node22/24). Utiliza y elimina únicamente registros ficticios de prueba.
+
+## Presentación local (02/11/2026)
+Panel y formularios responsive. Bootstrap 5.3.2 e iconos 1.11.2 se sirven desde www/app/vendor, con licencias conservadas; no se requiere CDN para el panel de gestión. Bootstrap CSS/JS contrastados con los SRI de las referencias originales. Portada con accesos directos y sin modal de bienvenida automático.
