@@ -1,39 +1,25 @@
-version: "3.1"
 services:
-    db:
-        image: mysql
-        ports: 
-            - "3306:3306"
-        command: --default-authentication-plugin=mysql_native_password
-        environment:
-            MYSQL_DATABASE: dbname
-            MYSQL_PASSWORD: test
-            MYSQL_ROOT_PASSWORD: test 
-        volumes:
-            - ./dump:/docker-entrypoint-initdb.d
-            - ./conf:/etc/mysql/conf.d
-            - persistent:/var/lib/mysql
-        networks:
-            - default
-    www:
-        build: .
-        ports: 
-            - "80:80"
-        volumes:
-            - ./www:/var/www/html
-        links:
-            - db
-        networks:
-            - default
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        links: 
-            - db:db
-        ports:
-            - 8000:80
-        environment:
-            MYSQL_USER: root
-            MYSQL_PASSWORD: test
-            MYSQL_ROOT_PASSWORD: test 
-volumes:
-    persistent:
+  db:
+    image: mysql:8.0.44
+    environment:
+      MYSQL_DATABASE: catalogo
+      MYSQL_USER: radio_demo
+      MYSQL_PASSWORD: local-demo-only
+      MYSQL_ROOT_PASSWORD: local-root-demo-only
+    volumes:
+      - ./database/demo.sql:/docker-entrypoint-initdb.d/demo.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 30
+  www:
+    build: .
+    ports: ["127.0.0.1:8084:80"]
+    environment:
+      DB_HOST: db
+      DB_USERNAME: radio_demo
+      DB_PASSWORD: local-demo-only
+      DB_NAME: catalogo
+    depends_on:
+      db:
+        condition: service_healthy

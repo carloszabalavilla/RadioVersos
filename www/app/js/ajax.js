@@ -1,11 +1,11 @@
 "use strict";
 
-const rutaBackend = "http://localhost/app/backend/";
+const rutaBackend = new URL("./backend/", window.location.href).href;
 
 /**
  * Realiza peticiones AJAX de tipo GET
- * @param {string} url 
- * @param {FormData} parametros - Objeto FormData con los parámetros de la llamada 
+ * @param {string} url
+ * @param {FormData} parametros - Objeto FormData con los parámetros de la llamada
  * @returns response
  */
 // async function peticionGet (url, parametros)
@@ -15,7 +15,7 @@ async function peticionGET(url, parametros) {
     let oURL = new URL(rutaBackend);
     oURL.pathname += url; // por ejemplo "alta_tipo.php"
 
-    // Agregamos los datos de los parámetros que vienen en un objeto FormData 
+    // Agregamos los datos de los parámetros que vienen en un objeto FormData
     for (let [clave, valor] of parametros) {
         oURL.searchParams.append(clave, valor);
     }
@@ -43,9 +43,9 @@ async function peticionGET(url, parametros) {
 
 /**
  * Realiza peticiones AJAX de tipo POST
- * @param {string} url 
- * @param {FormData} parametros - Objeto FormData con los parámetros de la llamada 
- * @returns 
+ * @param {string} url
+ * @param {FormData} parametros - Objeto FormData con los parámetros de la llamada
+ * @returns
  */
 async function peticionPOST(url, parametros){
     // Creamos el objeto URL que contiene la dirección url de la petición

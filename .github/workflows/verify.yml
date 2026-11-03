@@ -1,0 +1,10 @@
+name: PHP syntax
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: find www/app/backend -name '*.php' -print0 | xargs -0 -n1 php -l
